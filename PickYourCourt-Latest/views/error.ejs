@@ -1,0 +1,10 @@
+<%- include('./partials/header.ejs') %>
+<div class = "wrapper">
+    <div class="container big-font">
+        <h3> <img src="/images/error.png" alt="Error!" />
+           <b> <%= error.status %> Error </b></h3>
+        <p> <%= error.message%> </p>
+        <p><a href="/"> <u>Back to Home </u></a> </p>
+    </div>
+</div>
+<%- include('./partials/footer.ejs') %>

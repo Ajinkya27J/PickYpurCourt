@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Pick Your Court</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/css/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body class="background-css-body">
+            <div class="header">
+                <nav class="navbar-contents navbar navbar-inverse navbar-fixed-top">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="navbar-header">
+                                <a class="navbar-brand" href="/"> 
+                                    <!--<img src="/images/logo.png" class="logo" alt="logo"  /> -->
+                                    <span><img src="/images/icon.png" class="" alt="logo"  /></span>
+                                    <span class="app-title"><b>Pick Your Court </b></span>
+                                 </a>
+                            </div>
+                            <ul class="nav navbar-nav  navbar-right">
+                                <% if(!user) {%>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href='/users/new'> Sign Up</a>    
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href='/users/login'>   Login </a>  
+                                    </li>
+                                <% } else { %>
+                                    <li class="nav-item">
+                                        <a class="nav-link inactive" > Welcome, <b><%= userName + "!"%> </b> </a>  
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href='/users/logout'>   Logout </a>  
+                                    </li>
+                                <% } %>
+                            </ul>
+                        </div>
+                        
+                       <div class="row break-line"></div>
+                       <div class="row">
+                            <ul class="nav navbar-nav ">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/"> 
+                                        Home
+                                    </a>
+                                </li>
+                               
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/bookings"> 
+                                        Courts
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href='/users/profile'> 
+                                        Bookings
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                </nav>
+            </div>
+            <div class="wrapper">
+                <div class="container">
+                    <% if(errorMessages.length > 0) {%>
+                        <% errorMessages.forEach(message=>{%>
+                            <div class="alert alert-danger">
+                                <strong>Error! <%=message%> </strong>
+                              </div>
+                            <%});%>
+                    <%}%>
+                    
+                    <% if(successMessages.length > 0) {%>
+                        <% successMessages.forEach(message=>{%>
+                            <div class="alert alert-success"> 
+                                <b>Success!  <%=message%> </b>
+                            </div>
+                            <%});%>
+                    <%}%>
+        
+                </div>
+            </div>

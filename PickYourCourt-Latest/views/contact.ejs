@@ -1,0 +1,38 @@
+<%- include('./partials/header.ejs')%>
+<div class="wrapper">
+  <div class="container big-font">
+      <div class="jumbotron">
+        <form action="/feedbacks/submit-feedback" method="POST">
+          <label for="name">Your Name:</label>
+          <input type="text" id="name" name="name" required>
+          
+          <label for="email">Your Email:</label>
+          <input type="email" id="email" name="email" required>
+          
+          <label for="message">Your Feedback:</label>
+          <textarea id="message" name="message" required></textarea>
+          
+          <button type="submit">Submit</button>
+      </form>
+                
+       </div>
+        <h3><b>CONTACT</b></h3>
+       <p> <label> Email ID :</label>
+        <span>pickYourCourt@gmail.com</span> 
+        </p>
+        <p>
+        <label> Phone Number :</label> 
+        <span>+1 480-616-4320</span>  
+      </p> 
+        <p>
+        <label> Pick Your Court Office Address : </label>
+        <span>UNC CHARLOTTE
+          UREC, NC</span> 
+      </p>
+      <p> 
+        <label> Office Hours : </label> 
+        <span>8.00 AM - 5.00 P.M</span> 
+      </p>
+  </div>
+</div>
+<%- include('./partials/footer.ejs')%>

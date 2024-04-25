@@ -1,0 +1,93 @@
+<%- include('../partials/header.ejs')%>
+    <div class="wrapper bottom-padding">
+        <div class="container-fluid bottom-padding">
+            <h2 class="prod-title text-center"><b><u>New Booking </u></b></h2> 
+            <div class="row">
+                <div class="col-md-offset-1 col-md-4 text-center prod-title">
+                    <h3><b><%= court.name %></b></h2>
+                    <img src="/images/<%=court.image%>" alt="Image 1"  width="100%" height="100%">
+                    <h4>Max Seats: <b><%=court.capacity%></b>,  Status: <b style="color:#06f406"><%=court.status%></b></h4>
+                    
+                </div>
+                <div class="col-md-5  col-sm-6  text-center" >
+                    <br />
+                   
+                    <form class="form-horizontal" action = '/bookings' method = 'POST' >
+                        <input type="hidden" name="timeSlot" id="timeSlot" value="" />
+                        <input type="hidden" name="courtId" id="courtId" value="<%=court.id%>" />
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="chooseDate"> Choose Date:</label>
+                            <div class="col-sm-9">
+                            <input type="date" min="<%=curDate%>" class="form-control" id="chooseDate" placeholder="Choose Date" name="date"  value="<%=curDate%>" onChange="selectDate(this)">
+                            <a  id="loadDate" style="display:none">load</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="name">Available Times : </label>
+                            <div class="col-sm-9" id="timeSlotDiv"> 
+                               
+                                    <% timeSlotArr.forEach(slot=> {
+                                        let isBooked = false;
+                                        bookingArr.forEach(item=> { %>
+                                           <% if(slot == item) { isBooked = true; %>
+                                            <span class = 'button-pills button-pills-booked'><%= slot %></span>
+                                      <% } } ); if(!isBooked) { %>
+                                      <span class = 'button-pills button-pills-available' onclick=calculateTimeSlots(this)><%= slot %></span>
+                                    <%} }) %>  
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="name">Name:</label>
+                            <div class="col-sm-9">          
+                            <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" required minlength="2" maxlength="10">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="email">Email:</label>
+                            <div class="col-sm-9">          
+                                <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">        
+                            <div class="col-sm-offset-3 col-sm-9 text-right">
+                                <button class="btn btn-primary btn-lg button-custom">
+                                    Reserve
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+               </div> 
+            </div>
+        </div>
+    </div>
+
+<script>
+
+var header = document.getElementById("timeSlotDiv");
+var btns = header.getElementsByClassName("button-pills-available");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+  var current = document.getElementsByClassName("button-pills-active");
+  if (current.length > 0) { 
+    current[0].className = current[0].className.replace(" button-pills-active", "");
+  }
+  this.className += " button-pills-active";
+  
+  });
+}
+
+    function calculateTimeSlots(obj) {
+    document.getElementById('timeSlot').value = obj.innerHTML;
+    return true;
+}
+
+function selectDate(obj) {
+    //window.location.reload(true);
+    const date =  document.getElementById('chooseDate').value;
+    document.getElementById('loadDate').href = "/bookings/<%=court.id%>/new/" + date;
+    document.getElementById('loadDate').click();
+    
+}
+</script>
+<%- include('../partials/footer.ejs')%>

@@ -1,0 +1,75 @@
+<%- include('../partials/header.ejs')%>
+<div class="wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-basic">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-4 text-center prod-title">
+                                        <h3> <b><%= item.name%></b></h3>
+                                        <h5>Posted <%= item.createdAt.toLocaleString()%> by <b><%= item.createdBy.firstName +' '+ item.createdBy.lastName %> </b></h5>
+                                        <% if(item.image.length) {%>
+                                            <img src="<%=item.image%>"  class="image-item" alt="preview image" />
+                                        <%} else {%>
+                                            <img src="https://cdn.pixabay.com/photo/2017/04/03/15/52/mobile-phone-2198770__340.png"  class="image-item" alt="preview image" />
+                                    <%}%>    
+                                    </div>
+                                    <div class="col-md-5">
+                                        <h4><b><u>Device Information</u></b></h4>
+                                        <div class="product-desc text-justify">
+                                            <label>Category (OS Type)</label> : <span> <%= item.category %> </span>
+                                            <br />
+                                            <label> Model </label> : <span>  <%= item.model %> </span>
+                                            <br />
+                                            <label>  Manufacturer</label> : <span>  <%= item.manufacturer %> </span>
+                                            <br />
+                                            <label>  Condition</label> : <span>  <%= item.condition %> </span>
+                                            <br />
+                                            <label>  Status</label> : <span><%= item.status %> </span>
+                                            <br />
+                                            <label>  Details</label> : <br>
+                                            <p><%= item.details %>  </p>
+                                        </div>
+                                        <% if(user == item.createdBy._id) { %>
+                                            <div class="action-btns text-center"> 
+                                                <form>
+                                                    <button type="submit"  class="btn btn-md btn-primary button-custom" formmethod="GET" formaction="/trades/<%=item.id%>/edit"> Edit
+                                                    </button> &nbsp; &nbsp;
+                                                    <button type="submit" class="btn btn-md btn-danger" formmethod="POST" formaction="/trades/<%=item.id%>?_method=DELETE">
+                                                    Delete
+                                                    </button>
+                                                </form> 
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                    <% if(user != item.createdBy._id) { %>
+                                    <div class="col-md-3">
+                                        <h5><b>Are you interested in this smartphone ?</b></h5>  
+                                            <br />
+                                            <div class="action-btns text-center">  
+                                                <form>
+                                                   <% if(item.status === 'Available' ) { %>
+                                                        <button type="submit"  class="btn btn-md btn-primary button-custom" formmethod="GET" formaction="/trades/<%=item.id%>/trade"> Trade It
+                                                        </button>
+                                                    <%}%>
+                                                    <%if(item.watchedBy.includes(user.valueOf())) { %>
+                                                        <button type="submit"  class="btn btn-md btn-primary " formmethod="POST" formaction="/trades/<%=item.id%>/unwatch?_method=PUT"> Unwatch
+                                                        </button> 
+                                                    <%} else { %>
+                                                        <button type="submit"  class="btn btn-md btn-primary " formmethod="POST" formaction="/trades/<%=item.id%>/watch"> Watch
+                                                        </button>
+                                                   <% } %>
+                                                </form>
+                                            </div>
+                                            <br />  <br />
+                                    </div>
+                                    <%}%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('../partials/footer.ejs')%>

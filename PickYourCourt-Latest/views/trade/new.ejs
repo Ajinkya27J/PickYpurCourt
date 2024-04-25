@@ -1,0 +1,74 @@
+<%- include('../partials/header.ejs')%>
+    <div class="wrapper bottom-padding">
+        <div class="container-fluid bottom-padding">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center prod-title tradeForm">
+                    <br />
+                    <h4><b>New Trade </b></h4> 
+                    <form class="form-horizontal" action = '/trades' method = 'POST' >
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="category">Category(OS Type):</label>
+                            <div class="col-sm-9">
+                            <input type="text" class="form-control" id="category" placeholder="Enter Category" name="category" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="name">Device Name:</label>
+                            <div class="col-sm-9">          
+                            <input type="text" class="form-control" id="name" placeholder="Enter Device Name" name="name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="model">Device Model:</label>
+                            <div class="col-sm-9">          
+                            <input type="text" class="form-control" id="model" placeholder="Enter Device Model" name="model" required minlength="2" maxlength="10">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="manufacturer">Device Manufacturer:</label>
+                            <div class="col-sm-9">          
+                                <input type="text" class="form-control" id="manufacturer" placeholder="Enter Device Manufacturer" name="manufacturer" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="condition">Device Condition:</label>
+                            <div class="col-sm-9">          
+                                <input type="text" class="form-control" id="condition" placeholder="Enter Device Condition" name="condition" required >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="status"> Status:</label>
+                            <div class="col-sm-9"> 
+                                <select class="form-control" id="status" name="status">
+                                    <option value="Available">Available</option>
+                                    <option value="Offer Pending">Offer Pending</option>
+                                    <option value="Traded">Traded</option>
+                                </select>
+                                 <!--<input type="text" class="form-control" id="status" placeholder="Enter Device Status" name="status" required>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="image">Image Url:</label>
+                            <div class="col-sm-9">          
+                                <input type="text" class="form-control" id="image" placeholder="Enter Image Url" name="image" required >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="details">Device Details:</label>
+                            <div class="col-sm-9">          
+                                <textarea  rows=3 cols=5 class="form-control" id="details" placeholder="Enter Device Description" name="details" required minLength="10"> </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">        
+                            <div class="col-sm-offset-3 col-sm-9 text-right">
+                                <button class="btn btn-primary button-custom">
+                                    Create Trade
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include('../partials/footer.ejs')%>

@@ -1,0 +1,32 @@
+<%- include('../partials/header.ejs')%>
+        <div class="wrapper">
+            <div class="container item-list-box">
+                    <% if(categories.length) {%>
+                        <% categories.forEach(category=>{%>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-warning cards">
+                                    <div class="panel-heading">
+                                        <span class="card-title"><%= category %></span>                            
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="card-items">
+                                            <% items.forEach(item=> { if(item.category === category) {%>
+                                            <li class="">
+                                                <a class=""  href="trades/<%=item.id %>">
+                                                    <%= item.name %>
+                                                </a>
+                                            </li>
+                                            <%} });%>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <%});
+                } else {%>
+                    <p>There are no items to display.</p>
+                <%}%>    
+                </div>
+        </div>
+        <%- include('../partials/footer.ejs')%>

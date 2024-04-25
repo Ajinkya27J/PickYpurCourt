@@ -1,0 +1,44 @@
+
+<%- include('../partials/header.ejs')%>
+<div class = "content">
+    <div class="wrapper">
+        <div class="container-fluid auth-screen">
+            <div class="row">
+                <br> <br>
+                <div class="col-md-3 col-md-offset-4 app-form content-padding">
+                    <h4 class="text-center"><b>Sign Up </b></h4> <br> <br>
+                    <form class="form-horizontal" action = '/users' method = 'POST'>
+                        <table class="user-table">
+                            <tr>
+                                <td><label class="control-label"  for="firstName">First Name</label></td>
+                                <td><input type="text" id="firstName" class="form-control" name="firstName"  required></td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label"  for="lastName">Last Name</label></td>
+                                <td><input type="text" id="lastName" class="form-control" name="lastName"  required></td>
+                            </tr>
+                
+                            <tr>
+                                <td><label for="email" class="control-label">Email Address</label></td>
+                                <td><input type="email" class="form-control" id="email" name="email"  required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="password" class="control-label">Password</label></td>
+                                <td><input type="password" id="password" name="password"  class="form-control" minlength="8" required></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class ="text-center"><button class="btn  btn-primary button-custom button-size"><b>Sign Up</b></button></td>
+                            </tr>
+                        </table>        
+                    </form>                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <%- include('../partials/footer.ejs')%>
+
+

@@ -1,0 +1,85 @@
+<%- include('../partials/header.ejs')%>
+    <div class="wrapper bottom-padding">
+        <div class="container-fluid bottom-padding">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center prod-title tradeForm">
+                    <br />
+                    <h4><b>Update Trade </b></h4> 
+                    <form class="form-horizontal" method="POST" action="/trades/<%=item.id %>?_method=PUT" >
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="category">Category(OS Type):</label>
+                            <div class="col-sm-9">
+                            <input type="text" class="form-control" id="category" value="<%= item.category%>" placeholder="Enter Category" name="category" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="name">Device Name:</label>
+                            <div class="col-sm-9">          
+                            <input type="text" class="form-control" id="name" placeholder="Enter Device Name" value="<%= item.name %>" name="name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="model">Device Model:</label>
+                            <div class="col-sm-9">          
+                            <input type="text" class="form-control" id="model" placeholder="Enter Device Model" value="<%= item.model%>"  name="model" required minlength="2" maxlength="10">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="manufacturer">Device Manufacturer:</label>
+                            <div class="col-sm-9">          
+                                <input type="text" class="form-control" id="manufacturer" placeholder="Enter Device Manufacturer" value="<%= item.manufacturer%>" name="manufacturer" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="condition">Device Condition:</label>
+                            <div class="col-sm-9">          
+                                <input type="text" class="form-control" id="condition" placeholder="Enter Device Condition" value="<%= item.condition%>" name="condition" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="status"> Status:</label>
+                            <div class="col-sm-9"> 
+                                 <select class="form-control" id="status" name="status">
+                                   <% if(item.status == 'Available') {%>
+                                        <option value="Available" selected>Available</option>
+                                    <%} else {%>
+                                        <option value="Available">Available</option>
+                                   <% } %>
+                                    <%if(item.status == 'Offer Pending') {%>
+                                        <option value="Offer Pending" selected>Offer Pending</option>
+                                    <% } else { %>
+                                        <option value="Offer Pending">Offer Pending</option>
+                                    <%}%>
+                                    <%if(item.status == 'Traded') {%>
+                                        <option value="Traded" selected>Traded</option>
+                                    <% } else { %>
+                                        <option value="Traded">Traded</option>
+                                    <%}%>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="image">Image Url:</label>
+                            <div class="col-sm-9">          
+                                <input type="text" class="form-control" id="image" placeholder="Enter Image Url" value="<%= item.image%>" name="image" required >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="details">Device Description:</label>
+                            <div class="col-sm-9">          
+                                <textarea  rows=3 cols=5 class="form-control" id="details" placeholder="Enter Device Description" name="details" required minlength="10"> <%= item.details%> </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">        
+                            <div class="col-sm-offset-3 col-sm-9 text-right">
+                                <button type="submit" class="btn btn-primary button-custom">
+                                    Update Trade
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include('../partials/footer.ejs')%>

@@ -1,0 +1,47 @@
+
+<%- include('../partials/header.ejs')%>
+<div class = "content">
+    <div class="wrapper">
+        <div class="container">
+            <% if(item1 && item2) { %>
+                    <table class="table  table-bordered">
+                        
+                        <tbody>
+                            <tr>
+                                <td class="text-centered"> 
+                                    <a href="/trades/<%=item1.id%>"> <h4><u><%=item1.name %></u> </h4> </a> <br> 
+                                    <img src="<%=item1.image%>"  class="image-item preview-image" alt="preview image" />
+                                       
+                                </td>
+                                <td class="text-centered"> 
+                                    <a href="/trades/<%=item2.id%>"> <h4><u><%=item2.name %></u> <h4></h4></a>  <br> 
+                                    <img src="<%=item2.image%>"  class="image-item preview-image" alt="preview image" />
+                                </td>
+                                <td class="action-td">
+                                    <form>    
+                                       <% if(user.isOfferInitiator) {%>
+                                            &nbsp; &nbsp;
+                                        <button type="submit" class="btn btn-md btn-danger" formmethod="POST" formaction="/trades/<%=offerItem.id%>/cancelOffer?_method=DELETE">
+                                            Cancel Offer
+                                        </button>
+
+                                       <% } else { %>
+                                            <button type="submit"  class="btn btn-md btn-primary button-custom" formmethod="POST" formaction="/trades/<%=offerItem.id%>/acceptOffer?_method=PUT"> Accept
+                                            </button> &nbsp; &nbsp;
+                                            <button type="submit" class="btn btn-md btn-danger" formmethod="POST" formaction="/trades/<%=offerItem.id%>/rejectOffer?_method=DELETE">
+                                                Reject
+                                            </button>
+                                            
+                                        <%}%>
+                                    </form>
+                                 </td>
+                            <tr>
+                        </tbody>
+                    </table>
+                    <%} else { %>
+                        <p> There are no items to manage this offer! </p>
+                    <%}%>
+                </div>
+        </div>
+    </div>
+    <%- include('../partials/footer.ejs')%>

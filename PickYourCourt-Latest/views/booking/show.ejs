@@ -1,0 +1,54 @@
+<%- include('../partials/header.ejs')%>
+<div class="wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-basic">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class=" col-md-offset-1 col-md-4 text-center prod-title">
+                                        <h3><b><%= court.name %></b></h2>
+                                            <img src="/images/<%=court.image%>" alt="Image 1"  width="100%" height="100%">
+                                      </div>
+                                    <div class="col-md-5">
+                                        <br>
+                                        <h4><b><u>Booking Information</u></b></h4>
+                                        <div class="product-desc text-justify">
+                                            <label> Booking Reference Number</label> : <span> <%= item.id %> </span>
+                                            <br />
+                                            <label> Court Name </label> : <span>  <%= court.name %> </span>
+                                            <br />
+                                            <label> Capacity </label> : <span>  <%= court.capacity %> </span>
+                                            <br />
+                                            <label> Date Reserved</label> : <span>  <%= item.date %> </span>
+                                            <br />
+                                            <label>  Time Slot </label> : <span>  <%= item.timeSlot %> </span>
+                                            <br />
+                                            <label>  Location </label> : <span> 167, UNCC Boulvard Suite </span>
+                                            <br />
+                                            <label>  Booked On </label> : <span> <%= item.createdAt.toLocaleString()%></span>
+                                            <br />
+                                            <label>  Booking Person </label> : <span> <%= item.createdBy %> </span>
+                                            <br />
+                                        </div>
+                                        <br>
+                                        <% if(user == item.createdBy) { %>
+                                            <div class="action-btns text-center"> 
+                                                <form>
+                                                    <button type="submit"  class="btn btn-md btn-lg btn-primary button-custom" formmethod="GET" formaction="/bookings/<%=item.id%>/edit"> Edit
+                                                    </button> &nbsp; &nbsp;
+                                                    <button type="submit" class="btn btn-md btn-lg btn-danger" formmethod="POST" formaction="/bookings/<%=item.id%>?_method=DELETE">
+                                                    Delete
+                                                    </button>
+                                                </form> 
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('../partials/footer.ejs')%>

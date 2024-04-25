@@ -1,0 +1,23 @@
+<%- include('../partials/header.ejs')%>
+        <div class="wrapper">
+           
+            <div class="container item-list-box">
+                <h2><u><b>List of Courts</b> </u></h2>
+                <br>
+                <% courts.forEach(court=>{%>
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="bookings/<%=court.id%>/new"><img src="/images/<%=court.image%>" alt="Image 1"  width="100%" height="100%"></a>
+                    </div>
+                    <div class="col-md-8">
+                        <h3><b><%= court.name %></b></h2>
+                        <h4>Max Seats: <b><%=court.capacity%></b></h4>
+                        <h4>Status: <b style="color:#06f406"><%=court.status%></b></h4>
+                        <span><%=court.details%></span>
+                    </div>
+                </div>
+                <hr/>
+                <%} );%>     
+                </div>
+        </div>
+        <%- include('../partials/footer.ejs')%>

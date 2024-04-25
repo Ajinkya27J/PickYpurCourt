@@ -1,0 +1,57 @@
+
+<%- include('../partials/header.ejs')%>
+<div class = "content">
+    <div class="wrapper">
+        <div class="container item-list-box" style="overflow-x:auto">
+            <h2>Welcome, <%=user.firstName%></h2>
+            <% if(bookings.length) { %>
+                <h4> <b> Your Bookings </b> </h4>
+                <p> You have created <b><%=bookings.length%></b> bookings </p>
+                <table class="table profile-table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>S. No</th>
+                            <th>Booking ID</th>
+                            <th>Court Name</th>
+                            <th>Booked Date </th>
+                            <th>Time Slot</th>
+                            <th>Action</th>
+                           
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% bookings.forEach((item, index) => { %>
+                            <tr>
+                                <td> <%=index + 1 %></td>
+                                <td>  <b><a style="color:#2089e6" href="/bookings/<%=item.id%>"> <u><%=item.id %></u> </a></b></td>
+                               
+                                <td>   <%=item.courtName %> </td>
+                                
+                                <td> <%=item.date%> </td>
+                                <td> <%=item.timeSlot%> </td>
+                               
+                                <td>
+                                    <form>
+                                        
+                                            <button type="submit"  class="btn btn-md btn-primary button-custom" formmethod="GET" formaction="/bookings/<%=item.id%>/edit"> Edit
+                                            </button> &nbsp; &nbsp;
+                                            <button type="submit" class="btn btn-md btn-danger" formmethod="POST" formaction="/bookings/<%=item.id%>?_method=DELETE">
+                                            Cancel
+                                            </button> &nbsp; &nbsp;
+                                          
+                                        
+                                    </form>
+                                </td>
+                            </tr>
+                                <%}) %>
+                        </tbody>
+                    </table>  
+                    <%} else { %>
+                        <p> You have not created any bookings! </p>
+                    <%}%>
+                    <br>
+                    
+                </div>
+        </div>
+    </div>
+    <%- include('../partials/footer.ejs')%>
